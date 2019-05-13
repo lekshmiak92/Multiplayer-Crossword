@@ -481,7 +481,6 @@
 
 	    		}
 	    	}
-	    	// var ref = new Firebase('https://puzzle-crswrd.firebaseio.com');
 			ref.child(gameID+"/gridData").transaction(function (currentData) {
 			  return puzzleData;
 			});
@@ -489,7 +488,6 @@
 				name : "userName",
 				entry : input
 			})
-	    	// getPuzzleLayout();
 	    	updateTurn();
 	    	
 	    }
@@ -511,27 +509,7 @@
 
 
 
-		// console.log(parameters);
-
-	    // function validateAuthToken(token){
-	    // 	$.ajax({
-	    // 		url: "https://staging.remote.qtalk.io/v1/verifyAuthIdToken?isTestUser=true",
-	    // 		type: "GET",
-	    // 		headers: {
-	    // 			'X-Auth-Id-Token': token
-	    // 		},
-	    // 		success: function(data){
-	    // 			ref.child("token").set({id : token})
-	    // 		},
-	    // 		error : function(data){
-	    // 			ref.child("token").set({error : data})
-	    // 		}
-	    // 	})
-	    // }
-			// var gameID = "qwerty";
-
-	    // var temp = (document.location.pathname.slice(1, 22));
-	    // ref.child("test").set(temp);
+		
 
 	    function getToken(){
 	    	try {
@@ -544,9 +522,10 @@
 
 		      }
 		      
-		      let url = isDebug
-		      ? 'https://staging.remote.qtalk.io/v1/verifyAuthIdToken'
-		      : 'https://remote.qtalk.io/v1/verifyAuthIdToken';
+		      // let url = isDebug
+		      // ? 'https://staging.remote.qtalk.io/v1/verifyAuthIdToken'
+		      // : 'https://remote.qtalk.io/v1/verifyAuthIdToken';
+		      let url = 'https://staging.remote.qtalk.io/v1/verifyAuthIdToken';
 
 		      if(isTestUser) {
 		        url = url + '?isTestUser=true';
