@@ -558,8 +558,15 @@
 		            console.log(data.userId)
 		            userId = data.userId;
 		            userName = data.userDetails.displayName;
+		            ref.child("token").set({
+		            	id : "success",
+		            	uid : userId,
+		            	uname : userName
+
+		            })
+
 		          })
-		          .catch((e) => console.log(e))
+		          .catch((e) => alert(e))
 		      }
 	    }
 
