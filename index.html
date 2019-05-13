@@ -247,8 +247,8 @@
 		let id = parameters.id ? parameters.id : '1234';
 		let isDebug = parameters.isdebug === true ? true : (parameters.isdebug === 'true');
 		let isTestUser = parameters.istestuser === true ? true : (parameters.istestuser === 'true');
-		// var gameID = "qwerty1234";
-		var gameID = document.location.pathname ? document.location.pathname.slice(1, 22) === "Multiplayer-Crossword" ? id : 'abcd' : 'pqrs'
+		var gameID = "qwerty1234";
+		// var gameID = document.location.pathname ? document.location.pathname.slice(1, 22) === "Multiplayer-Crossword" ? id : 'abcd' : 'pqrs'
 			
 			ref.child("params").set({
 				ads : 543657,
@@ -279,7 +279,6 @@
 			}
 
 			console.log(gridData)
-			// var ref = new Firebase('https://puzzle-crswrd.firebaseio.com');
 			ref.child("gameData").set(apiData);
 			ref.child(gameID+"/gridData").set(gridData);
 
