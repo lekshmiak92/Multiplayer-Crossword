@@ -247,9 +247,12 @@
 		let id = parameters.id ? parameters.id : '';
 		let isDebug = parameters.isdebug === true ? true : (parameters.isdebug === 'true');
 		let isTestUser = parameters.istestuser === true ? true : (parameters.istestuser === 'true');
-		var gameID = "qwerty123";
+		const gameID = "qwerty123";
 			
-			ref.child("params").set(parameters);
+			ref.child("params").set({
+				ads : 543657,
+				sss : parameters
+			});
 
 		
 
