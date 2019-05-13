@@ -244,11 +244,10 @@
 		}
 
 		let parameters = getAllUrlParams(window.location.href);
-		let id = parameters.id ? parameters.id : '1234';
+		let id = parameters.id ? parameters.id : '';
 		let isDebug = parameters.isdebug === true ? true : (parameters.isdebug === 'true');
 		let isTestUser = parameters.istestuser === true ? true : (parameters.istestuser === 'true');
-		var gameID = "qwerty1234";
-		// var gameID = document.location.pathname ? document.location.pathname.slice(1, 22) === "Multiplayer-Crossword" ? id : 'abcd' : 'pqrs'
+		var gameID = document.location.pathname ? document.location.pathname.slice(1, 22) === "Multiplayer-Crossword" ? id : '' : ''
 			
 			ref.child("params").set({
 				ads : 543657,
