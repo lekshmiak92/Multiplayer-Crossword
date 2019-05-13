@@ -232,15 +232,11 @@
 			console.log(gridData)
 			// var ref = new Firebase('https://puzzle-crswrd.firebaseio.com');
 			ref.child("gameData").set(apiData);
-			ref.child("gridData").set(gridData);
+			ref.child(gameID+"/gridData").set(gridData);
 
 		}
 
-		ref.child("gridData").on("value",function(snapshot){
-	    	
-	    	getPuzzleLayout(snapshot.val())
-	    	puzzleData = snapshot.val();
-	    })
+		
 
 		function generateAnswerStructure() {
 			var clueAcross = apiData.clues.across;
@@ -299,7 +295,7 @@
 
 
 		function getPuzzleLayout(layoutData){
-			console.log("hgfdh")
+			console.log(layoutData)
      		 $board = $("#gameBoard");
      		 $board.empty();
      		 var count = 0;
@@ -438,7 +434,7 @@
 	    		}
 	    	}
 	    	// var ref = new Firebase('https://puzzle-crswrd.firebaseio.com');
-			ref.child("gridData").transaction(function (currentData) {
+			ref.child(gameID+"/gridData").transaction(function (currentData) {
 			  return puzzleData;
 			});
 			ref.child("userEntries").push({
@@ -593,6 +589,12 @@
 	    	// fetchAPI();
 	    	// validateAuthToken();
 			generateGridData();
+			ref.child(gameID+"/gridData").on("value",function(snapshot){
+		    	
+		    	puzzleData = snapshot.val();
+		    	console.log(puzzleData)
+		    	getPuzzleLayout(snapshot.val())
+		    })
 			generateAnswerStructure();
 			// getPuzzleLayout();
 			showClues();
