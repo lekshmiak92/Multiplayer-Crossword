@@ -200,6 +200,7 @@
 		var selectedClueNum = 0;
 		var gridnums=[];
 		var ref = new Firebase('https://puzzle-crswrd.firebaseio.com');
+		var userId, userName = "";
 
 
 
@@ -502,26 +503,64 @@
 		let isDebug = parameters.isdebug === true ? true : (parameters.isdebug === 'true');
 		let isTestUser = parameters.istestuser === true ? true : (parameters.istestuser === 'true');
 
-		console.log(parameters);
 
-	    function validateAuthToken(token){
-	    	$.ajax({
-	    		url: "https://staging.remote.qtalk.io/v1/verifyAuthIdToken?isTestUser=true",
-	    		type: "GET",
-	    		headers: {
-	    			'X-Auth-Id-Token': token
-	    		},
-	    		success: function(data){
-	    			alert(data)
-	    			userAccess = data.isTokenValid,
-	    			ref.child("token").set({id : token})
-	    		},
-	    		error : function(data){
-	    			// alert(data)
-	    			userAccess = data.isTokenValid,
-	    			ref.child("token").set({id : parameters})
-	    		}
-	    	})
+
+		// console.log(parameters);
+
+	    // function validateAuthToken(token){
+	    // 	$.ajax({
+	    // 		url: "https://staging.remote.qtalk.io/v1/verifyAuthIdToken?isTestUser=true",
+	    // 		type: "GET",
+	    // 		headers: {
+	    // 			'X-Auth-Id-Token': token
+	    // 		},
+	    // 		success: function(data){
+	    // 			ref.child("token").set({id : token})
+	    // 		},
+	    // 		error : function(data){
+	    // 			ref.child("token").set({error : data})
+	    // 		}
+	    // 	})
+	    // }
+
+	    function getToken(){
+	    	try {
+		        token = window.QTalkApp.getUserAuthToken()
+		        //database.ref('token').set(token ? token : "no token");
+		      } catch {
+		         // token = "";
+		         //token = "cdc9b8e03a9e85e02a425983028b602ecdd7bdd5";
+				 token = "cdc9b8e03a9e85e02a425983028b602ecdd7bdd5";
+
+		      }
+		      
+		      let url = isDebug
+		      ? 'https://staging.remote.qtalk.io/v1/verifyAuthIdToken'
+		      : 'https://remote.qtalk.io/v1/verifyAuthIdToken';
+
+		      if(isTestUser) {
+		        url = url + '?isTestUser=true';
+		      }
+
+		      console.log(url);
+		      
+		      if (token) {
+		        fetch(url, {
+		          method: 'GET',
+		          headers: {
+		            'X-Auth-Id-Token': token ? token : '',
+		          },
+		        })
+		          .then((response) => {
+		            return response.json()
+		          })
+		          .then((data) => {
+		            console.log(data.userId)
+		            userId = data.userId;
+		            userName = data.userDetails.displayName;
+		          })
+		          .catch((e) => console.log(e))
+		      }
 	    }
 
 
@@ -533,7 +572,6 @@
 			});
 		}
 			
-			var token = "user";
 			var userAccess;
 
 			var gameID = "qwerty";
@@ -587,16 +625,16 @@
 
 			
 	    	// fetchAPI();
-	    	// validateAuthToken();
+	    	// validateAuthToken(token);
+	    	getToken();
 			generateGridData();
 			ref.child(gameID+"/gridData").on("value",function(snapshot){
 		    	
 		    	puzzleData = snapshot.val();
-		    	console.log(puzzleData)
 		    	getPuzzleLayout(snapshot.val())
 		    })
+
 			generateAnswerStructure();
-			// getPuzzleLayout();
 			showClues();
 			$("#gameBoard").on("click","td",fetchClue)
 			$("#checkBtn").on("click",handleClickOfCheck)
