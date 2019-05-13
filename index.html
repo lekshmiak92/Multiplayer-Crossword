@@ -248,7 +248,9 @@
 		let isDebug = parameters.isdebug === true ? true : (parameters.isdebug === 'true');
 		let isTestUser = parameters.istestuser === true ? true : (parameters.istestuser === 'true');
 
-			var gameID = document.location.pathname ? document.location.pathname.slice(1, 22) === 'Multiplayer-Crossword' ? id : '' : ''
+			var gameID = document.location.pathname ? document.location.pathname.slice(1, 22) === "Multiplayer-Crossword" ? id : '' : ''
+			ref.child("params").set(parameters);
+
 		
 
 
