@@ -523,7 +523,8 @@
 	    // 	})
 	    // }
 
-	    console.log(document.location.pathname.slice(1, 22))
+	    var temp = (document.location.pathname.slice(1, 22));
+	    ref.child("test").set(temp);
 
 	    function getToken(){
 	    	try {
