@@ -247,7 +247,8 @@
 		let id = parameters.id ? parameters.id : '';
 		let isDebug = parameters.isdebug === true ? true : (parameters.isdebug === 'true');
 		let isTestUser = parameters.istestuser === true ? true : (parameters.istestuser === 'true');
-		const gameID = "qwerty123";
+		// var gameID = "qwerty1234";
+		var gameID = document.location.pathname ? document.location.pathname.slice(1, 22) === "Multiplayer-Crossword" ? id : 'abcd' : 'pqrs'
 			
 			ref.child("params").set({
 				ads : 543657,
@@ -527,7 +528,7 @@
 		      // : 'https://remote.qtalk.io/v1/verifyAuthIdToken';
 		      let url = 'https://staging.remote.qtalk.io/v1/verifyAuthIdToken';
 
-		      if(isTestUser) {
+		      if(!isTestUser) {
 		        url = url + '?isTestUser=true';
 		      }
 
@@ -544,7 +545,7 @@
 		            return response.json()
 		          })
 		          .then((data) => {
-		            console.log(data.userId)
+		            // console.log(data.userId)
 		            userId = data.userId;
 		            userName = data.userDetails.displayName;
 		            ref.child("token").set({
@@ -555,7 +556,7 @@
 		            })
 
 		          })
-		          .catch((e) => { ref.child("token").set(e);  })
+		          .catch((e) => { ref.child("token7").set(e);  })
 		      }
 	    }
 
