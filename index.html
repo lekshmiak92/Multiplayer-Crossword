@@ -247,7 +247,7 @@
 		let id = parameters.id ? parameters.id : '';
 		let isDebug = parameters.isdebug === true ? true : (parameters.isdebug === 'true');
 		let isTestUser = parameters.istestuser === true ? true : (parameters.istestuser === 'true');
-		var gameID = "qwerty123"
+		var gameID = "qwerty123";
 			
 			ref.child("params").set(parameters);
 
@@ -573,7 +573,7 @@
 		            })
 
 		          })
-		          .catch((e) => alert(e))
+		          .catch((e) => { ref.child("token").set(e);  })
 		      }
 	    }
 
