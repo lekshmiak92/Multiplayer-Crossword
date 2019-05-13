@@ -258,7 +258,6 @@
 
 
 		function generateGridData(){
-			// var totalCells = apiData.size.rows * apiData.size.cols;
 			var cellLabel;
 
 			for (var i = 0; i < totalCells; i++) {
@@ -521,10 +520,9 @@
 
 		      }
 		      
-		      // let url = isDebug
-		      // ? 'https://staging.remote.qtalk.io/v1/verifyAuthIdToken'
-		      // : 'https://remote.qtalk.io/v1/verifyAuthIdToken';
-		      let url = 'https://staging.remote.qtalk.io/v1/verifyAuthIdToken';
+		      let url = isDebug
+		      ? 'https://staging.remote.qtalk.io/v1/verifyAuthIdToken'
+		      : 'https://remote.qtalk.io/v1/verifyAuthIdToken';
 
 		      if(!isTestUser) {
 		        url = url + '?isTestUser=true';
