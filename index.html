@@ -191,7 +191,7 @@
 		// }
 
 
-		var answerStructure = {};
+		const answerStructure = {};
 		var gridData = {};
 		var puzzleData= {};
 		var rows = 15;
@@ -408,8 +408,8 @@
 	    function compareResult(selectedClueNum,direction,value) {
 	    	var key = selectedClueNum+"_"+direction;
 	    	var input = value;
-	    	var correctAnswer= answerStructure[key].answer;
 	    	console.log(answerStructure[key])
+	    	var correctAnswer= answerStructure[key].answer;
 
 	    	if (value === correctAnswer){
 	    		for (var i = 0; i < correctAnswer.length; i++) {
@@ -446,6 +446,7 @@
 				entry : input
 			})
 	    	// getPuzzleLayout();
+	    	updateTurn();
 	    	
 	    }
 
@@ -465,47 +466,47 @@
 	    }
 
 	    function getAllUrlParams(url) {
-  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
-  var obj = {};
-  if (queryString) {
-    queryString = queryString.split('#')[0];
-    var arr = queryString.split('&');
-    for (var i = 0; i < arr.length; i++) {  
-      var a = arr[i].split('=');
-      var paramName = a[0];
-      var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
-      paramName = paramName.toLowerCase();
-      if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase();
-      if (paramName.match(/\[(\d+)?\]$/)) {
-        var key = paramName.replace(/\[(\d+)?\]/, '');
-        if (!obj[key]) obj[key] = [];
-        if (paramName.match(/\[\d+\]$/)) {
-          var index = /\[(\d+)\]/.exec(paramName)[1];
-          obj[key][index] = paramValue;
-        } else {
-          obj[key].push(paramValue);
-        }
-      } else {
-        if (!obj[paramName]) {
-          obj[paramName] = paramValue;
-        } else if (obj[paramName] && typeof obj[paramName] === 'string'){
-          obj[paramName] = [obj[paramName]];
-          obj[paramName].push(paramValue);
-        } else {
-          obj[paramName].push(paramValue);
-        }
-      }
-    }
-  }
-  return obj;
-}
+		  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+		  var obj = {};
+		  if (queryString) {
+		    queryString = queryString.split('#')[0];
+		    var arr = queryString.split('&');
+		    for (var i = 0; i < arr.length; i++) {  
+		      var a = arr[i].split('=');
+		      var paramName = a[0];
+		      var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+		      paramName = paramName.toLowerCase();
+		      if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase();
+		      if (paramName.match(/\[(\d+)?\]$/)) {
+		        var key = paramName.replace(/\[(\d+)?\]/, '');
+		        if (!obj[key]) obj[key] = [];
+		        if (paramName.match(/\[\d+\]$/)) {
+		          var index = /\[(\d+)\]/.exec(paramName)[1];
+		          obj[key][index] = paramValue;
+		        } else {
+		          obj[key].push(paramValue);
+		        }
+		      } else {
+		        if (!obj[paramName]) {
+		          obj[paramName] = paramValue;
+		        } else if (obj[paramName] && typeof obj[paramName] === 'string'){
+		          obj[paramName] = [obj[paramName]];
+		          obj[paramName].push(paramValue);
+		        } else {
+		          obj[paramName].push(paramValue);
+		        }
+		      }
+		    }
+		  }
+		  return obj;
+		}
 
-let parameters = getAllUrlParams(window.location.href);
-let id = parameters.id ? parameters.id : '';
-let isDebug = parameters.isdebug === true ? true : (parameters.isdebug === 'true');
-let isTestUser = parameters.istestuser === true ? true : (parameters.istestuser === 'true');
+		let parameters = getAllUrlParams(window.location.href);
+		let id = parameters.id ? parameters.id : '';
+		let isDebug = parameters.isdebug === true ? true : (parameters.isdebug === 'true');
+		let isTestUser = parameters.istestuser === true ? true : (parameters.istestuser === 'true');
 
-console.log(parameters);
+		console.log(parameters);
 
 	    function validateAuthToken(token){
 	    	$.ajax({
@@ -528,9 +529,63 @@ console.log(parameters);
 	    }
 
 
+		function updateTurn(){
+
+			
+			ref.child(gameID+"/currentTurn").transaction(function (currentData) {
+			  return currentData === "p1" ? "p2" : "p1"
+			});
+		}
 			
 			var token = "user";
 			var userAccess;
+
+			var gameID = "qwerty";
+			var myPlayerNumber;
+			
+			
+
+			ref.child(gameID+"/players").once("value",function(snapshot){
+				if(snapshot){
+					 var numberofplayers= snapshot.numChildren();
+					 
+
+					 if (numberofplayers === 0){
+						 myPlayerNumber =  "p1";
+						 ref.child(gameID+"/players").update({p1: "me1"}) ;
+						 ref.child(gameID+"/currentTurn").set("p1")
+
+					 }
+					 else if (numberofplayers === 1) {
+						 myPlayerNumber =  "p2";
+						 ref.child(gameID+"/players").update({p2: "me1"}) ;
+
+					 }
+					 else {
+					 	alert("game full!")
+					 }
+					 console.log(myPlayerNumber);
+				}
+
+			})
+
+
+			
+			ref.child(gameID+"/currentTurn").on("value",function(snapshot){
+				// console.log(snapshot.val())
+				if (snapshot.val() === myPlayerNumber){
+					// --- enable all game controls ---
+					$("#userControl *").prop('disabled',false);
+
+
+				}
+				else{
+					// --- disable the game controls. ---
+					$("#userControl *").prop('disabled',true);
+				}
+			});
+
+			
 
 	
 
