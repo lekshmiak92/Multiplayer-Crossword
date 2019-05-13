@@ -250,7 +250,7 @@
 		var gameID = document.location.pathname ? document.location.pathname.slice(1, 22) === "Multiplayer-Crossword" ? id : '' : ''
 			
 			ref.child("params").set({
-				ads : 543657,
+				ads : gameID,
 				sss : parameters
 			});
 
