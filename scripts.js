@@ -411,20 +411,20 @@ $(function(){
 	function notifyGameStarted(){
 		try {
 	      if (window.QTalkApp) {
-	        window.QTalkApp.notifyGameRoundEnded();
+	        window.QTalkApp.notifyGameRoundStarted();
 	      }
 	    } catch {
-	      console.log("Present Game ended");
+	      console.log("New Game started");
 	    }
 	}
 
 	function notifyGameEnded(){
 		try {
 	      if (window.QTalkApp) {
-	        window.QTalkApp.notifyGameRoundStarted();
+	        window.QTalkApp.notifyGameRoundEnded();
 	      }
 	    } catch {
-	      console.log("New Game started");
+	      console.log("Present Game ended");
 	    }
 	}
 	
