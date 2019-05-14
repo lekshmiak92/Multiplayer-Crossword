@@ -1,0 +1,88 @@
+.container{
+			margin: 2rem auto;
+		}
+		.deadBlock{
+			background-color: #3e3e3e;
+			color: #3e3e3e;
+		}
+		.table {
+			width: 50%;
+			max-width: 100%;
+		}
+		table#gameBoard {
+		    margin: auto;
+		}
+		td{
+			text-align: center;
+			border: 1px solid grey;
+
+
+		}
+
+		.liveBlock{
+			color: white;
+
+		}
+		td input {
+			width: 4rem;
+			border: none;
+    		text-align: center;
+    		background-color: transparent;
+		}
+
+		label{
+			float: left;
+			font-size: 10px;
+		}
+		.text-trans{
+			visibility: hidden;
+		}
+		input:focus {
+			outline: none;
+		}
+
+		div#userControl{
+		    width: 50%;
+		    margin: 3rem auto;
+		}
+
+		.bg-green{
+			background-color: #60db60 ;
+		}
+
+		.higlight-red{
+			outline: 1px solid #f52828;
+			    background-color: #f56236;
+		}
+		.highlight-blue{
+			outline: 2px solid #0e2cff;
+		    outline-style: auto;
+		    background-color: #fbfb6bb3;
+		}
+		div.userAction{
+			margin: 2rem;
+			overflow: hidden;
+		}
+		div.action {
+		    display: block;
+		    float: left;
+		    text-align: center;
+		}
+		input#userInput {
+		    text-transform: uppercase;
+		}
+		/*siblingRadio*/
+
+		.radio+.radio {
+		    margin-top: 10px;
+		}
+		.cluebox {
+		    padding: 0 8rem;
+		}
+		header{
+			text-align: center;
+		}
+		img.logo{
+			width: 20%;
+
+		}
