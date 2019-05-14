@@ -408,9 +408,28 @@ $(function(){
 		}
 	});
 
+	function notifyGameStarted(){
+		try {
+	      if (window.QTalkApp) {
+	        window.QTalkApp.notifyGameRoundEnded();
+	      }
+	    } catch {
+	      console.log("Present Game ended");
+	    }
+	}
+
+	function notifyGameEnded(){
+		try {
+	      if (window.QTalkApp) {
+	        window.QTalkApp.notifyGameRoundStarted();
+	      }
+	    } catch {
+	      console.log("New Game started");
+	    }
+	}
 	
 
-	QTalkApp.notifyGameRoundStarted();
+	notifyGameStarted();
 	getToken();
 	generateGridData();
 	generateAnswerStructure();
@@ -433,7 +452,7 @@ $(function(){
 
 		}
 		if (count === 0){
-			QTalkApp.notifyGameRoundEnded();
+			notifyGameEnded();
 			// console.log("game Over")
 		}
 
