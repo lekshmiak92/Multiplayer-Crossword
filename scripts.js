@@ -444,7 +444,7 @@ $(function(){
 		puzzleData = snapshot.val();
 		getPuzzleLayout(snapshot.val())
 		var count =0;
-		for (var i = 1; i <= 3; i++) {
+		for (var i = 1; i <= totalCells; i++) {
 
 			if (puzzleData[i].status ==="wrong" || (puzzleData[i].status ===null&& puzzleData[i].letter!==".")) {
 				count++;
