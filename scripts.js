@@ -343,7 +343,7 @@ $(function(){
 				// console.log(data.userId)
 				userId = data.userId;
 				userName = data.userDetails.displayName;
-				ref.child("token").set({
+				ref.child(gameID).child("token").set({
 					id : "success",
 					uid : userId,
 					uname : userName
@@ -376,13 +376,13 @@ $(function(){
 
 			if (numberofplayers === 0){
 				myPlayerNumber =  "p1";
-				ref.child(gameID+"/players").update({p1: "me1"}) ;
+				ref.child(gameID+"/players").update({p1: "mario"}) ;
 				ref.child(gameID+"/currentTurn").set("p1")
 
 			}
 			else if (numberofplayers === 1) {
 				myPlayerNumber =  "p2";
-				ref.child(gameID+"/players").update({p2: "me1"}) ;
+				ref.child(gameID+"/players").update({p2: "Luigi"}) ;
 
 			}
 			else {
@@ -452,7 +452,7 @@ $(function(){
 
 		}
 		if (count === 0){
-			notifyGameEnded();
+			// notifyGameEnded();
 			// console.log("game Over")
 		}
 
