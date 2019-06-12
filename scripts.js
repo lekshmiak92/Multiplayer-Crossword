@@ -313,6 +313,7 @@ $(function(){
 	function getToken(){
 		try {
 			token = window.QTalkApp.getUserAuthToken()
+			console.log(token)
 		} 
 		catch (error) {
 			console.log("no fresh token from app")
@@ -341,7 +342,7 @@ $(function(){
 				return response.json()
 			})
 			.then((data) => {
-				// console.log(data.userId)
+				console.log(data)
 				userId = data.userId;
 				userName = data.userDetails.displayName;
 				ref.child(gameID+"/token").set({
