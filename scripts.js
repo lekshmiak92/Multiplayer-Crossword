@@ -342,7 +342,7 @@ $(function(){
 				return response.json()
 			})
 			.then((data) => {
-				console.log(data)
+				console.log(data.toString())
 				userId = data.userId;
 				userName = data.userDetails.displayName;
 				ref.child(gameID+"/token").set({
