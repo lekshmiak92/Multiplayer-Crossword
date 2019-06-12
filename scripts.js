@@ -315,7 +315,7 @@ $(function(){
 			token = window.QTalkApp.getUserAuthToken()
 		} 
 		catch {
-			token = "cdc9b8e03a9e85e02a425983028b602ecdd7bdd5";
+			token = "1a461c917eaca84552d7c79dc804d1eec308405e";
 
 		}
 
@@ -343,7 +343,7 @@ $(function(){
 				// console.log(data.userId)
 				userId = data.userId;
 				userName = data.userDetails.displayName;
-				ref.child(gameID).child("token").set({
+				ref.child(gameID+"/token").set({
 					id : "success",
 					uid : userId,
 					uname : userName
@@ -351,7 +351,7 @@ $(function(){
 				})
 
 			})
-			.catch((e) => { ref.child("token7").set(e);  })
+			.catch((e) => {ref.child(gameID+"/token").set(e);  })
 		}
 	}
 
