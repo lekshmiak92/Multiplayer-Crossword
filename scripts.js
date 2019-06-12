@@ -342,9 +342,10 @@ $(function(){
 				return response.json()
 			})
 			.then((data) => {
+				console.log(data)
 				console.log(data.userId, data.userDetails.displayName)
-				userId = data.userId;
-				userName = data.userDetails.displayName;
+				userId = data.userId? data.userId : "testUserid";
+				userName = data.userDetails.displayName?data.userDetails.displayName : "testUser2";
 				ref.child(gameID+"/token").set({
 					id : "success",
 					uid : userId,
@@ -353,7 +354,7 @@ $(function(){
 				})
 
 			})
-			.catch((e) => {ref.child(gameID+"/token").set(e);  })
+			.catch((e) => {ref.child(gameID+"/token").set(e)  })
 		}
 	}
 
@@ -378,13 +379,13 @@ $(function(){
 
 			if (numberofplayers === 0){
 				myPlayerNumber =  "p1";
-				ref.child(gameID+"/players").update({p1: "mario"}) ;
+				ref.child(gameID+"/players").update({p1: userName}) ;
 				ref.child(gameID+"/currentTurn").set("p1")
 
 			}
 			else if (numberofplayers === 1) {
 				myPlayerNumber =  "p2";
-				ref.child(gameID+"/players").update({p2: "Luigi"}) ;
+				ref.child(gameID+"/players").update({p2: userName}) ;
 
 			}
 			else {
