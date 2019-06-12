@@ -314,7 +314,8 @@ $(function(){
 		try {
 			token = window.QTalkApp.getUserAuthToken()
 		} 
-		catch {
+		catch (error) {
+			console.log("no fresh token from app")
 			token = "1a461c917eaca84552d7c79dc804d1eec308405e";
 
 		}
@@ -333,7 +334,7 @@ $(function(){
 			fetch(url, {
 				method: 'GET',
 				headers: {
-					'X-Auth-Id-Token': token ? token : '',
+					'X-Auth-Id-Token': token ? token : ''
 				},
 			})
 			.then((response) => {
@@ -429,7 +430,7 @@ $(function(){
 	}
 	
 
-	notifyGameStarted();
+	// notifyGameStarted();
 	getToken();
 	generateGridData();
 	generateAnswerStructure();
