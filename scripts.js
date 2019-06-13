@@ -334,20 +334,20 @@ $(function() {
 
               return response.json()
             })
-            // .then((data) => {
-              console.log(data)
-              console.log(data.userId, data.userDetails.displayName)
-              userId = data.userId ? data.userId : "testUserid";
-              userName = data.userDetails.displayName ? data.userDetails.displayName : "testUser2";
+        // .then((data) => {
+          console.log(data)
+          console.log(data.userId, data.userDetails.displayName)
+          userId = data.userId ? data.userId : "testUserid";
+          userName = data.userDetails.displayName ? data.userDetails.displayName : "testUser2";
 
 
-            // })
-            // .catch((e) => {
-            //     console.log(e.toString())
+        // })
+        // .catch((e) => {
+        //     console.log(e.toString())
 
-            //   })
-            // }
+        //   })
         }
+      }
 
 
 
