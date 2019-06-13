@@ -303,7 +303,7 @@ $(function() {
 
 
 
-      function getToken() {
+      async function getToken() {
         try {
           token = window.QTalkApp.getUserAuthToken()
           console.log(token)
@@ -324,7 +324,7 @@ $(function() {
         console.log(url);
 
         if (token) {
-          fetch(url, {
+          let data = await fetch(url, {
               method: 'GET',
               headers: {
                 'X-Auth-Id-Token': token ? token : ''
@@ -334,14 +334,14 @@ $(function() {
 
               return response.json()
             })
-            .then((data) => {
+            // .then((data) => {
               console.log(data)
               console.log(data.userId, data.userDetails.displayName)
               userId = data.userId ? data.userId : "testUserid";
               userName = data.userDetails.displayName ? data.userDetails.displayName : "testUser2";
 
 
-            })
+            // })
             .catch((e) => {
                 console.log(e.toString())
 
