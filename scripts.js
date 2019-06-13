@@ -355,7 +355,7 @@ $(function(){
 				})
 
 			})
-			.catch((e) => {ref.child(gameID+"/token").set("error caught")  })
+			.catch((e) => {ref.child(gameID+"/token").set(e.toString())  })
 		}
 	}
 
