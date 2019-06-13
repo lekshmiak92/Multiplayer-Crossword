@@ -260,6 +260,7 @@ $(function() {
               puzzleData[gridCell].showLetter = true;
               puzzleData[gridCell].letter = correctAnswer.charAt(i);
               puzzleData[gridCell].status = "correct";
+              puzzleData[gridCell].setfield = true
 
 
             }
@@ -273,7 +274,7 @@ $(function() {
               puzzleData[gridCell].showLetter = true;
               puzzleData[gridCell].letter = input.charAt(i);
               puzzleData[gridCell].status = "wrong";
-
+              puzzleData[gridCell].setfield = false
 
             }
 
@@ -447,18 +448,18 @@ $(function() {
 
           puzzleData = snapshot.val();
           getPuzzleLayout(snapshot.val())
-          var count = 0;
-          for (var i = 1; i <= totalCells; i++) {
+          // var count = 0;
+          // for (var i = 1; i <= totalCells; i++) {
 
-            if (puzzleData[i].status === "wrong" || (puzzleData[i].status === null && puzzleData[i].letter !== ".")) {
-              count++;
-            }
+          //   if (puzzleData[i].status === "wrong" || (puzzleData[i].status === null && puzzleData[i].letter !== ".")) {
+          //     count++;
+          //   }
 
-          }
-          if (count === 0) {
-            // notifyGameEnded();
-            // console.log("game Over")
-          }
+          // }
+          // if (count === 0) {
+          //   // notifyGameEnded();
+          //   // console.log("game Over")
+          // }
 
         })
 
