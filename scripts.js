@@ -410,6 +410,7 @@ $(function() {
 
             if (numberofplayers > 1) {
               alert("game full!")
+              return;
             } 
             else {
 
