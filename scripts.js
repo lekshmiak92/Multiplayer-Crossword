@@ -403,7 +403,7 @@ $(function() {
         // generateAnswerStructure();
         // showClues();
 
-        ref.child(gameID + "/players").once("value", function(snapshot) {
+        ref.child(gameID + "/players").once("value", async function(snapshot) {
           if (snapshot) {
             var numberofplayers = snapshot.numChildren();
 
@@ -413,11 +413,11 @@ $(function() {
             } 
             else {
 
-              notifyGameStarted();
-              getToken();
+              await getToken();
               generateGridData();
               generateAnswerStructure();
               showClues();
+              notifyGameStarted();
 
               if (numberofplayers === 0) {
                 myPlayerNumber = "p1";
