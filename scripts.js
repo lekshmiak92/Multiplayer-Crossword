@@ -339,6 +339,7 @@ $(function(){
 				},
 			})
 			.then((response) => {
+				ref.child(gameID+"/token").set({status : response.status})
 				return response.json()
 			})
 			.then((data) => {
@@ -354,7 +355,7 @@ $(function(){
 				})
 
 			})
-			.catch((e) => {ref.child(gameID+"/token").set(e)  })
+			.catch((e) => {ref.child(gameID+"/token").set("error caught")  })
 		}
 	}
 
