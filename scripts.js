@@ -342,11 +342,11 @@ $(function() {
 
 
             // })
-            .catch((e) => {
-                console.log(e.toString())
+            // .catch((e) => {
+            //     console.log(e.toString())
 
-              })
-            }
+            //   })
+            // }
         }
 
 
