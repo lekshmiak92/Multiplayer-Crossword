@@ -29,7 +29,7 @@ exports.onGameUpdate = functions.database
     // if (value === "gameEnd"){
     // 	return change.after.ref.parent.update("null");
     // }
-    return null;
+    return snapshot.ref.parent.update({ fromCloud : "null"});
     
   });
 
