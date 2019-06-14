@@ -463,13 +463,14 @@ $(function() {
     status = snapshot.val();
     console.log(status)
     if (status === "gameEnd") {
-      notifyGameEnded();
-      alert("Game Over")
       console.log("game Over")
       if (isInitializer === true) {
 
         ref.child(gameID + "/reset").set("true");
       }
+      alert("Game Over")
+      notifyGameEnded();
+      $("#box").empty().text("Game Over..!");
     }
   })
 
