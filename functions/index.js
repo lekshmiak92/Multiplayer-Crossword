@@ -21,15 +21,15 @@ exports.onGameUpdate = functions.database
   });
 
   exports.onGameEnd = functions.database
-  .ref("/{gameid}/status")
-  .onUpdate((change, context) => {
-    console.log(change.after.val())
-    var value = change.after.val();
+  .ref("/{gameid}/reset")
+  .onCreate((snapshot, context) => {
+    console.log(snapshot.val())
+    // var value = change.after.val();
 
-    if (value === "gameEnd"){
-    	return change.after.ref.parent.update("null");
-    }
-
+    // if (value === "gameEnd"){
+    // 	return change.after.ref.parent.update("null");
+    // }
+    return null;
     
   });
 

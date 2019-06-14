@@ -450,22 +450,22 @@ $(function() {
   $("#clueBtn").on("click", showClues)
 
   ref.child(gameID + "/gridData").on("value", function(snapshot) {
-    var status;
-    ref.child(gameID + "/status").transaction(function(currentStatus) {
-      status = currentStatus;
-      return currentStatus;
-    });
-
-    if (status === "gameEnd") {
-      notifyGameEnded();
-      alert("Game Over")
-      console.log("game Over")
-    } else {
-
+    
       puzzleData = snapshot.val();
       getPuzzleLayout(snapshot.val());
-    }
+    
 
+  })
+
+  ref.child(gameID + "/status").on("value", function(snapshot) {
+      status = snapshot.val();
+      console.log(status)
+      if (status === "gameEnd") {
+        notifyGameEnded();
+        alert("Game Over")
+        console.log("game Over")
+        ref.child(gameID + "/reset").set({ "true" });
+      }
   })
 
 
