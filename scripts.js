@@ -365,11 +365,13 @@ $(function() {
   ref.child(gameID + "/currentTurn").on("value", function(snapshot) {
     if (snapshot.val() === myPlayerNumber) {
       // --- enable all game controls ---
+      $("#turnTab").text("Your turn")
       $("#userControl *").prop('disabled', false);
 
 
     } else {
       // --- disable the game controls. ---
+      $("#turnTab").text("Opponent's turn")
       $("#userControl *").prop('disabled', true);
     }
   });
@@ -410,7 +412,7 @@ $(function() {
 
       if (numberofplayers > 1) {
         alert("game full!")
-        return ;
+        return;
 
       } else {
 
@@ -450,22 +452,25 @@ $(function() {
   $("#clueBtn").on("click", showClues)
 
   ref.child(gameID + "/gridData").on("value", function(snapshot) {
-    
-      puzzleData = snapshot.val();
-      getPuzzleLayout(snapshot.val());
-    
+
+    puzzleData = snapshot.val();
+    getPuzzleLayout(snapshot.val());
+
 
   })
 
   ref.child(gameID + "/status").on("value", function(snapshot) {
-      status = snapshot.val();
-      console.log(status)
-      if (status === "gameEnd") {
-        notifyGameEnded();
-        alert("Game Over")
-        console.log("game Over")
+    status = snapshot.val();
+    console.log(status)
+    if (status === "gameEnd") {
+      notifyGameEnded();
+      alert("Game Over")
+      console.log("game Over")
+      if (isInitializer === true) {
+
         ref.child(gameID + "/reset").set("tttt");
       }
+    }
   })
 
 

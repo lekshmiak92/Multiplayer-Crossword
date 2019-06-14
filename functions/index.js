@@ -9,27 +9,22 @@ exports.onGameUpdate = functions.database
     console.log(change.after.val())
     var obj = change.after.val();
 
-    for (var i = 1; i <= 4; i++) {
-    	if(obj[i].setfield === false && obj[i].letter !== "." ){
-			return change.after.ref.parent.update({status : "onGoing"});
-    	} else {
-    		return change.after.ref.parent.update({status : "gameEnd"});
-    	}
+    for (var i = 1; i <= obj.length; i++) {
+      if (obj[i].setfield === false && obj[i].letter !== ".") {
+        return change.after.ref.parent.update({ status: "onGoing" });
+      } else {
+        return change.after.ref.parent.update({ status: "gameEnd" });
+      }
     }
 
-    
+
   });
 
-  exports.onGameEnd = functions.database
+exports.onGameEnd = functions.database
   .ref("/{gameid}/reset")
   .onCreate((snapshot, context) => {
     console.log(snapshot.val())
-    // var value = change.after.val();
 
-    // if (value === "gameEnd"){
-    // 	return change.after.ref.parent.update("null");
-    // }
-    return snapshot.ref.parent.update({ fromCloud : "null"});
-    
+    return snapshot.ref.parent.set(null);
+
   });
-
