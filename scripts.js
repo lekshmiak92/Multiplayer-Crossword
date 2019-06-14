@@ -464,7 +464,7 @@ $(function() {
         notifyGameEnded();
         alert("Game Over")
         console.log("game Over")
-        ref.child(gameID + "/reset").set({ "tttt" });
+        ref.child(gameID + "/reset").set("tttt");
       }
   })
 
