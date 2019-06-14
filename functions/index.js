@@ -9,7 +9,7 @@ exports.onGameUpdate = functions.database
     console.log(change.after.val())
     var obj = change.after.val();
 
-    for (var i = 1; i <= 4; i++) {
+    for (var i = 1; i <= obj.length; i++) {
       if (obj[i].setfield === false && obj[i].letter !== ".") {
         return change.after.ref.parent.update({ status: "onGoing" });
       } else {

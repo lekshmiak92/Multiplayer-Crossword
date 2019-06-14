@@ -69,8 +69,7 @@ $(function() {
 
   function generateGridData(apiData) {
     var cellLabel;
-    // var setCell = false;
-
+   
     for (var i = 0; i < totalCells; i++) {
       if (apiData.gridnums[i] === 0) {
         cellLabel = ""
@@ -87,9 +86,6 @@ $(function() {
 
       }
     }
-
-    console.log(gridData)
-    // ref.child("gameData").set(apiData);
     ref.child(gameID + "/gridData").set(gridData);
 
   }
@@ -146,15 +142,15 @@ $(function() {
 
     }
 
-    console.log(answerStructure)
-
   }
 
 
   function getPuzzleLayout(layoutData) {
-    console.log(layoutData)
+   
     $board = $("#gameBoard");
     $board.empty();
+    $("input#down input#across").attr("disabled", false)
+    $("input#across input#down").attr("checked", false)
     var count = 0;
 
 
@@ -224,10 +220,6 @@ $(function() {
       var valueDown = answerStructure[downKey].answer;
       var indexDown = apiData.answers.down.indexOf(valueDown);
 
-
-      // $("input#down input#across").attr("disabled", false)
-      // $("input#across input#down").attr("checked", false)
-
       $("#clueBox").append('<h4>Across:</h4><p>' + apiData.clues.across[indexAcross] + '&nbsp; (' + valueAcross.length + ")</p><br/>");
       $("#clueBox").append('<h4>Down:</h4><p>' + apiData.clues.down[indexDown] + '&nbsp; (' + valueDown.length + ")</p><br/>");
 
@@ -256,7 +248,6 @@ $(function() {
   function compareResult(selectedClueNum, direction, value) {
     var key = selectedClueNum + "_" + direction;
     var input = value;
-    console.log(answerStructure[key])
     var correctAnswer = answerStructure[key].answer;
 
     if (value === correctAnswer) {
@@ -314,11 +305,11 @@ $(function() {
   async function getToken() {
     try {
       token = window.QTalkApp.getUserAuthToken()
-      console.log(token)
+
     } catch (error) {
       console.log("no fresh token from app")
       token = "1a461c917eaca84552d7c79dc804d1eec308405e";
-
+      //----Qtalk test user 2---
     }
 
     let url = isDebug ?
@@ -328,8 +319,6 @@ $(function() {
     if (isTestUser) {
       url = url + '?isTestUser=true';
     }
-
-    console.log(url);
 
     if (token) {
       let data = await fetch(url, {
@@ -342,8 +331,7 @@ $(function() {
 
           return response.json()
         })
-      // .then((data) => {
-      console.log(data)
+
       console.log(data.userId, data.userDetails.displayName)
       userId = data.userId ? data.userId : "testUserid";
       userName = data.userDetails.displayName ? data.userDetails.displayName : "testUser2";
@@ -395,15 +383,6 @@ $(function() {
       console.log("Present Game ended");
     }
   }
-
-
-  // // notifyGameStarted();
-  // getToken();
-  // generateGridData();
-  // generateAnswerStructure();
-  // showClues();
-
-
 
   ref.child(gameID + "/players").once("value", async function(snapshot) {
     if (snapshot) {
@@ -461,9 +440,7 @@ $(function() {
 
   ref.child(gameID + "/status").on("value", function(snapshot) {
     status = snapshot.val();
-    console.log(status)
     if (status === "gameEnd") {
-      console.log("game Over")
       if (isInitializer === true) {
 
         ref.child(gameID + "/reset").set("true");
