@@ -470,7 +470,7 @@ $(function() {
       }
       alert("Game Over")
       notifyGameEnded();
-      $("#box").empty().text("Game Over..!");
+      $("#box").empty().html('<div class="msg"> Game Over..! </div>');
     }
   })
 
