@@ -468,7 +468,7 @@ $(function() {
       console.log("game Over")
       if (isInitializer === true) {
 
-        ref.child(gameID + "/reset").set("tttt");
+        ref.child(gameID + "/reset").set("true");
       }
     }
   })
