@@ -214,6 +214,9 @@ $(function() {
 
     $("#clueBox").empty();
 
+    $("input#down input#across").attr("disabled", false)
+    $("input#across input#down").attr("checked", false)
+
 
     if ((answerStructure[downKey]) && (answerStructure[acrossKey])) {
       var valueAcross = answerStructure[acrossKey].answer;
@@ -222,8 +225,8 @@ $(function() {
       var indexDown = apiData.answers.down.indexOf(valueDown);
 
 
-      $("input#down input#across").attr("disabled", false)
-      $("input#across input#down").attr("checked", false)
+      // $("input#down input#across").attr("disabled", false)
+      // $("input#across input#down").attr("checked", false)
 
       $("#clueBox").append('<h4>Across:</h4><p>' + apiData.clues.across[indexAcross] + '&nbsp; (' + valueAcross.length + ")</p><br/>");
       $("#clueBox").append('<h4>Down:</h4><p>' + apiData.clues.down[indexDown] + '&nbsp; (' + valueDown.length + ")</p><br/>");
@@ -407,10 +410,9 @@ $(function() {
 
       if (numberofplayers > 1) {
         alert("game full!")
-        return;
+        return ;
+
       } else {
-
-
 
         if (numberofplayers === 0) {
           isInitializer = true;
@@ -448,14 +450,20 @@ $(function() {
   $("#clueBtn").on("click", showClues)
 
   ref.child(gameID + "/gridData").on("value", function(snapshot) {
+    var status;
+    ref.child(gameID + "/status").transaction(function(currentStatus) {
+      status = currentStatus;
+      return currentStatus;
+    });
 
-    if (snapshot.val().status === "gameEnd") {
+    if (status === "gameEnd") {
       notifyGameEnded();
+      alert("Game Over")
       console.log("game Over")
     } else {
 
       puzzleData = snapshot.val();
-      getPuzzleLayout(snapshot.val())
+      getPuzzleLayout(snapshot.val());
     }
 
   })
