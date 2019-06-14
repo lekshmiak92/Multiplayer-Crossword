@@ -19,7 +19,7 @@ table#gameBoard {
 td {
   text-align: center;
   border: 1px solid grey;
-
+  vertical-align: bottom;
 
 }
 
