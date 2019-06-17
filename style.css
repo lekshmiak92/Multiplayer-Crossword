@@ -117,4 +117,11 @@ img.logo {
 
 .logoname{
   font-family: 'Baloo Bhaijaan', cursive;
+  font-size: 4rem;
+
+  text-transform: uppercase;
+  background: linear-gradient(to right, #30CFD0 0%, blue 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }
