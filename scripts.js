@@ -427,7 +427,7 @@ $(function() {
       
     }
 
-    
+
 
   })
 
@@ -458,6 +458,6 @@ $(function() {
 
   
   
-ref.child(`${gameID}/players/${myPlayerNumber}`).onDisconnect().remove();
+ref.child(`${gameID}/players/${myPlayerNumber}`).onDisconnect().child(myPlayerNumber).setValue(null);
 
 })
