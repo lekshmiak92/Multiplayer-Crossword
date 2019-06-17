@@ -424,7 +424,7 @@ $(function() {
 
       console.log(myPlayerNumber);
       playerDisconnect = JSON.parse('{"'+myPlayerNumber+'": "dsfs"}')
-      ref.child(`${gameID}/players/${myPlayerNumber}`).onDisconnect().update(playerDisconnect);
+      ref.child(`${gameID}/players/${myPlayerNumber}`).onDisconnect().remove();
     }
 
   })
