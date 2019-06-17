@@ -452,7 +452,7 @@ $(function() {
   })
 
   
-  ref.child(gameID + "/players").onDisconnect().update({myPlayerNumber : "I disconnected!"});
+  ref.child(gameID + "/players/" + myPlayerNumber).onDisconnect().remove();
 
 
 })
