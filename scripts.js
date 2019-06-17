@@ -354,7 +354,7 @@ $(function() {
   ref.child(gameID + "/currentTurn").on("value", function(snapshot) {
     if (snapshot.val() === myPlayerNumber) {
       // --- enable all game controls ---
-      $("#turnTab").text("Your turn")
+      $("#turnTab").text("Your turn..!")
       $("#userControl *").prop('disabled', false);
 
 

@@ -1,3 +1,4 @@
+
 .container {
   margin: 2rem auto;
 }
@@ -120,7 +121,7 @@ img.logo {
   font-size: 4rem;
 
   text-transform: uppercase;
-  background: linear-gradient(to right, #30CFD0 0%, blue 50%);
+  background: linear-gradient(to right, red,blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
