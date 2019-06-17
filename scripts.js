@@ -423,7 +423,7 @@ $(function() {
       }
 
       console.log(myPlayerNumber);
-      playerDisconnect = '{"'+myPlayerNumber+'": "null"}'
+      playerDisconnect = JSON.parse('{"'+myPlayerNumber+'": "null"}')
     }
 
   })
@@ -454,7 +454,7 @@ $(function() {
   })
 
   
-  ref.child(`${gameID}/players/${myPlayerNumber}`).onDisconnect().update(JSON.parse(playerDisconnect));
+  ref.child(`${gameID}/players/${myPlayerNumber}`).onDisconnect().update(playerDisconnect);
 
 
 })
