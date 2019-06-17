@@ -70,7 +70,7 @@ $(function() {
 
   function generateGridData(apiData) {
     var cellLabel;
-   
+
     for (var i = 0; i < totalCells; i++) {
       if (apiData.gridnums[i] === 0) {
         cellLabel = ""
@@ -147,7 +147,7 @@ $(function() {
 
 
   function getPuzzleLayout(layoutData) {
-   
+
     $board = $("#gameBoard");
     $board.empty();
     $("input#down input#across").attr("disabled", false)
@@ -388,8 +388,6 @@ $(function() {
   ref.child(gameID + "/players").once("value", async function(snapshot) {
     if (snapshot) {
       var numberofplayers = snapshot.numChildren();
-
-
       if (numberofplayers > 1) {
         alert("game full!")
         return;
@@ -416,18 +414,10 @@ $(function() {
           showClues();
           notifyGameStarted();
           ref.child(gameID + "/players").update({ p2: userName });
-
         }
-
-
       }
-
       console.log(myPlayerNumber);
-      
     }
-
-
-
   })
 
   $("#gameBoard").on("click", "td", fetchClue)
@@ -455,6 +445,6 @@ $(function() {
     }
   })
 
-  
+
 
 })
