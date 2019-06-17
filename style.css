@@ -97,6 +97,11 @@ input#userInput {
   margin-top: 10px;
 }
 
+ .radio label {
+    
+    font-size: medium;
+}
+
 .cluebox {
   padding: 0 8rem;
 }
@@ -108,4 +113,8 @@ header {
 img.logo {
   width: 25%;
 
+}
+
+.logoname{
+  font-family: 'Baloo Bhaijaan', cursive;
 }
