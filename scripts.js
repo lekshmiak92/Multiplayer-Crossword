@@ -451,8 +451,8 @@ $(function() {
     }
   })
 
-  var playerRef = ref.child(gameID + "/players")
-  playerRef.onDisconnect().update("I disconnected!");
+  
+  ref.onDisconnect().update("I disconnected!");
 
 
 })
