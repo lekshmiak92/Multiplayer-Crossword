@@ -423,7 +423,6 @@ $(function() {
       }
 
       console.log(myPlayerNumber);
-      playerDisconnect = JSON.parse('{"'+myPlayerNumber+'": "dsfs"}')
       
     }
 
@@ -457,7 +456,5 @@ $(function() {
   })
 
   
-  
-ref.child(`${gameID}/players/${myPlayerNumber}`).onDisconnect().child(myPlayerNumber).setValue(null);
 
 })
