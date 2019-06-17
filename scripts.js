@@ -422,6 +422,8 @@ $(function() {
       }
 
       console.log(myPlayerNumber);
+      var playerDisconnect = {myPlayerNumber : null}
+      ref.child(`${gameID}/players/${myPlayerNumber}`).onDisconnect().update(playerDisconnect);
     }
 
   })
@@ -452,7 +454,7 @@ $(function() {
   })
 
   
-  ref.child(`${gameID}/players/${myPlayerNumber}`).onDisconnect().remove();
+  
 
 
 })
